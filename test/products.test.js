@@ -54,7 +54,7 @@ describe("Products", () => {
     expect(Object.keys(body)).toContain("message");
   }
   
-  describe("1 - Crie um endpoint para o cadastro de produtos", () => {
+  describe.only("1 - Crie um endpoint para o cadastro de produtos", () => {
     it("Será validado que o campo name esteja presente no body da requisição", async()=>{
       await frisby
         .post(`${url}/products/`, {
