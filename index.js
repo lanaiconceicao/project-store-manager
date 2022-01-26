@@ -5,7 +5,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const productController = require('./controllers/productController');
 
-const validateProductMiddleware = require('./controllers/middlewares/validateProductMiddleware');
+const {
+  validateNameMiddleware,
+  validateQuantityMiddleware,
+} = require('./controllers/middlewares/validateProductMiddleware');
 
 const app = express();
 
@@ -23,7 +26,8 @@ app.get('/', (_request, response) => {
 // Requisito 1
 app.post(
   '/products',
-  validateProductMiddleware,
+  validateNameMiddleware,
+  validateQuantityMiddleware,
   productController.add,
 );
 
