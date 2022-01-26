@@ -194,7 +194,7 @@ describe("Products", () => {
     });
   });
 
-  describe.only("2 - Crie um endpoint para listar os produtos", () => {
+  describe("2 - Crie um endpoint para listar os produtos", () => {
     it("Será validado que todos produtos estão sendo retornados", async () => {
       await frisby
         .get(`${url}/products`)

@@ -1,4 +1,6 @@
-const validateNameMiddleware = (req, res, next) => {
+const productService = require('../../services/productService');
+
+const validateNameMiddleware = async (req, res, next) => {
   const { name } = req.body;
 
   // NAME VALIDATION
@@ -10,10 +12,11 @@ const validateNameMiddleware = (req, res, next) => {
     return res.status(422).json({ message: '"name" length must be at least 5 characters long' });
   }
 
-  // if (name === name.body) {
-  //   return res.status(409).json({ message: 'Product already exists' });
-  // }
-  
+  // Feito com a ajuda da pessoa estudante Gessé Carlos
+  const product = await productService.getAll();
+  if (product.some((prod) => prod.name === name)) {
+    return res.status(409).json({ message: 'Product already exists' });
+  }
   next();
 };
 
