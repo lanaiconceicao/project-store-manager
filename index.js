@@ -8,6 +8,8 @@ const productController = require('./controllers/productController');
 const {
   validateNameMiddleware,
   validateQuantityMiddleware,
+  validateIfNameExists,
+  // validateIfProductAlreadyExists,
 } = require('./controllers/middlewares/validateProductMiddleware');
 
 const app = express();
@@ -27,6 +29,7 @@ app.get('/', (_request, response) => {
 app.post(
   '/products',
   validateNameMiddleware,
+  validateIfNameExists,
   validateQuantityMiddleware,
   productController.add,
 );
@@ -35,6 +38,15 @@ app.post(
 app.get('/products', productController.getAll);
 
 app.get('/products/:id', productController.getById);
+
+// Requisito 3
+app.put(
+  '/products/:id',
+  validateNameMiddleware,
+  validateQuantityMiddleware,
+  // validateIfProductAlreadyExists,
+  productController.update,
+);
 
 // =============================================================================================
 

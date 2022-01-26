@@ -9,8 +9,15 @@ const getById = async (id) => {
   return product;
 };
 
+const update = async ({ id, name, quantity }) => {
+  await getById(id);
+  const updatedProduct = await productModel.update(id, name, quantity);
+  return updatedProduct;
+};
+
 module.exports = {
   add,
   getAll,
   getById,
+  update,
 };
