@@ -31,6 +31,11 @@ app.post(
   productController.add,
 );
 
+// Requisito 2
+app.get('/products', productController.getAll);
+
+app.get('/products/:id', productController.getById);
+
 // =============================================================================================
 
 app.listen(process.env.PORT, () => {
