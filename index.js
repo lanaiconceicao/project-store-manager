@@ -48,6 +48,9 @@ app.put(
   productController.update,
 );
 
+// Requisito 4
+app.delete('/products/:id', productController.remove);
+
 // =============================================================================================
 
 app.listen(process.env.PORT, () => {

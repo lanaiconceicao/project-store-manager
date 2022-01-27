@@ -38,8 +38,12 @@ const update = rescue(async (req, res) => {
 
 const remove = rescue(async (req, res) => {
   const { id } = req.params;
+
+  const product = await productService.getById(id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+  
   await productService.remove(id);
-  res.status().end();
+  res.status(200).json(product);
 });
 
 module.exports = {
