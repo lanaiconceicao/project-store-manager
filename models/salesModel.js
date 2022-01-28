@@ -20,6 +20,7 @@ const add = async (sales) => {
   return response;
 };
 
+// Feito com a ajuda da pessoa estudante Gessé Carlos
 const getAll = async () => {
   const [response] = await connection.query(
     `SELECT salesprod.sale_id AS saleId,
@@ -34,6 +35,7 @@ const getAll = async () => {
   return response;
 };
 
+// Feito com a ajuda da pessoa estudante Gessé Carlos
 const getById = async (id) => {
   const [response] = await connection.query(
     `SELECT sales.date AS date,
@@ -51,8 +53,16 @@ const getById = async (id) => {
   return response;
 };
 
+const update = async (id, quantity) => {
+  await connection.query(
+    'UPDATE sales_products SET quantity = ? WHERE product_id = ?',
+    [quantity, id],
+  );
+};
+
 module.exports = {
   add,
   getAll,
   getById,
+  update,
 };
