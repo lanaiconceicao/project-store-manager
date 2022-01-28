@@ -2,14 +2,30 @@ const rescue = require('express-rescue');
 const salesService = require('../services/salesService');
 
 const add = rescue(async (req, res) => {
-  const insertSale = await salesService.add(req.body);
+  const newSale = await salesService.add(req.body);
 
   return res.status(201).json({
-    id: insertSale.insertId,
+    id: newSale.insertId,
     itemsSold: req.body,
   });
 });
 
+const getAll = rescue(async (req, res) => {
+  const sales = await salesService.getAll();
+  return res.status(200).json(sales);
+});
+
+const getById = rescue(async (req, res) => {
+  const { id } = req.params;
+  const sales = await salesService.getById(id);
+
+  if (!sales) return res.status(404).json({ message: 'Sale not found' });
+
+  return res.status(200).json(sales);
+});
+
 module.exports = {
   add,
+  getAll,
+  getById,
 };
