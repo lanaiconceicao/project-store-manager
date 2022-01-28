@@ -3,6 +3,8 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
+
+// Importação de controllers
 const productController = require('./controllers/productController');
 const salesController = require('./controllers/salesController');
 
@@ -54,7 +56,7 @@ app.put(
 // Requisito 4
 app.delete('/products/:id', productController.remove);
 
-// ======================================== PRODUCTS ======================================
+// ======================================== SALES ======================================
 
 // Requisito 5
 
@@ -63,6 +65,10 @@ app.post('/sales',
   validateSalesMiddleware,
   validateProdQuantityMiddleware,
   salesController.add);
+
+// Requisito 6
+app.get('/sales', salesController.getAll);
+app.get('/sales/:id', salesController.getById);
 
 // =============================================================================================
 
