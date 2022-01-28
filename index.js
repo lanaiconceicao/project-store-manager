@@ -4,13 +4,16 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const productController = require('./controllers/productController');
+const salesController = require('./controllers/salesController');
 
 const {
   validateNameMiddleware,
   validateQuantityMiddleware,
-  validateIfNameExists,
-  // validateIfProductAlreadyExists,
-} = require('./controllers/middlewares/validateProductMiddleware');
+  validateIfNameExists } = require('./controllers/middlewares/validateProductMiddleware');
+
+const {
+  validateProductIdMiddleware, validateSalesMiddleware, validateProdQuantityMiddleware,
+} = require('./controllers/middlewares/validateSales');
 
 const app = express();
 
@@ -23,7 +26,7 @@ app.get('/', (_request, response) => {
   response.send();
 });
 
-// ======================================== DEVELOPMENT ======================================
+// ======================================== PRODUCTS ======================================
 
 // Requisito 1
 app.post(
@@ -50,6 +53,16 @@ app.put(
 
 // Requisito 4
 app.delete('/products/:id', productController.remove);
+
+// ======================================== PRODUCTS ======================================
+
+// Requisito 5
+
+app.post('/sales',
+  validateProductIdMiddleware,
+  validateSalesMiddleware,
+  validateProdQuantityMiddleware,
+  salesController.add);
 
 // =============================================================================================
 
