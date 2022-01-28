@@ -16,7 +16,7 @@ const validateNameMiddleware = async (req, res, next) => {
 
 const validateIfNameExists = async (req, res, next) => {
   const { name } = req.body;
-  // Feito com a ajuda da pessoa estudante Gessé Carlos
+  // Função feita com a ajuda da pessoa estudante Gessé Carlos
   const product = await productService.getAll();
   if (product.some((prod) => prod.name === name)) {
     return res.status(409).json({ message: 'Product already exists' });

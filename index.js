@@ -70,6 +70,13 @@ app.post('/sales',
 app.get('/sales', salesController.getAll);
 app.get('/sales/:id', salesController.getById);
 
+// Requisito 7
+app.put('/sales/:id',
+  validateProductIdMiddleware,
+  validateSalesMiddleware,
+  validateProdQuantityMiddleware,
+  salesController.update);
+
 // =============================================================================================
 
 app.listen(process.env.PORT, () => {
