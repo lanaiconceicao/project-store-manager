@@ -60,9 +60,16 @@ const update = async (id, quantity) => {
   );
 };
 
+const remove = async (id) => {
+  await connection.query(
+    'DELETE FROM sales WHERE id = ?', [id],
+  );
+};
+
 module.exports = {
   add,
   getAll,
   getById,
   update,
+  remove,
 };
