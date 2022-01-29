@@ -35,6 +35,14 @@ const getAll = async () => {
   return response;
 };
 
+const getAllFromSalesProduct = async () => {
+  const [response] = await connection.query(
+    'SELECT * FROM sales_products;',
+  );
+
+  return response;
+};
+
 // Feito com a ajuda da pessoa estudante Gessé Carlos
 const getById = async (id) => {
   const [response] = await connection.query(
@@ -69,6 +77,7 @@ const remove = async (id) => {
 module.exports = {
   add,
   getAll,
+  getAllFromSalesProduct,
   getById,
   update,
   remove,

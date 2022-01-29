@@ -11,6 +11,11 @@ const getAll = async () => {
   return result;
 };
 
+const getAllFromSalesProduct = async () => {
+  const result = salesModel.getAllFromSalesProduct();
+  return result;
+};
+
 const getById = async (id) => {
   const result = await salesModel.getById(id);
   return result;
@@ -40,6 +45,7 @@ const remove = async (id) => {
 module.exports = {
   add,
   getAll,
+  getAllFromSalesProduct,
   getById,
   update,
   remove,

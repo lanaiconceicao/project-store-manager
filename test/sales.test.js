@@ -719,7 +719,7 @@ describe('Sales', () => {
     });
   });
 
-  describe.only('10 - Crie um endpoint para deletar uma venda', () => {
+  describe('10 - Crie um endpoint para deletar uma venda', () => {
     it('Será validado que é possível deletar uma venda com sucesso', async () => {
       let result;
       let resultSales;

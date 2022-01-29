@@ -82,6 +82,8 @@ app.delete('/sales/:id', salesController.remove);
 
 // =============================================================================================
 
-app.listen(process.env.PORT, () => {
-  console.log(`Escutando na porta ${process.env.PORT}`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`Escutando na porta ${port}`);
 });
