@@ -77,6 +77,9 @@ app.put('/sales/:id',
   validateProdQuantityMiddleware,
   salesController.update);
 
+// Requisito 10
+app.delete('/sales/:id', salesController.remove);
+
 // =============================================================================================
 
 app.listen(process.env.PORT, () => {
